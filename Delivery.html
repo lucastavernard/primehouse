@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faça seu Pedido</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+
+
+        main {
+            padding: 10px;
+            max-width: 600px;
+            margin: 100px auto 0; 
+        }
+
+        .delivery-form-box {
+            border: 2px solid #ccc;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .delivery-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 0.875em;
+            display: block;
+        }
+
+        .total-value {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .confirm-button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .confirm-button:hover {
+            background-color: #662f2f;
+        }
+    </style>
+</head>
+<body>
+    <header class="solid">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <a class="navbar-brand" href="Homepage.html">Churrascaria PRIME-HOUSE</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="Homepage.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Cardapio.html">Cardápio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Reserva.html">Reserva</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Cadastro.html">Cadastro</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="text-center">Faça seu Pedido</h1>
+        
+        <div class="delivery-form-box">
+            <div class="delivery-form">
+                <div class="form-group">
+                    <label for="endereco">Endereço:</label>
+                    <input type="text" id="endereco" class="form-control" placeholder="Digite seu endereço">
+                </div>
+
+                <div class="form-group">
+                    <label for="pedido">Pedido:</label>
+                    <input type="text" id="pedido" class="form-control" placeholder="Digite seu pedido" oninput="verificarPedido()">
+                    <small id="mensagemErro" class="error-message"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="complementos">Complementos:</label>
+                    <select id="complementos" class="form-control" multiple disabled>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Total:</label>
+                    <p class="total-value" id="totalValue">R$ 0.00</p>
+                </div>
+
+                <button onclick="confirmarPedido()" class="confirm-button">Confirmar Pedido</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const header = document.getElementById('header');
+            const endereco = document.getElementById('endereco');
+            const pedido = document.getElementById('pedido');
+            const mensagemErro = document.getElementById('mensagemErro');
+            const complementosSelect = document.getElementById('complementos');
+            const totalValueElement = document.getElementById('totalValue');
+
+            const cardapio = {
+                "picanha": { complementos: ["300g de carne", "Arroz", "Farofa de ovo"], preco: 60 },
+                "mignon": { complementos: ["300g de File Mignon", "Arroz", "Farofa de bacon", "Feijão"], preco: 75 },
+                "maminha": { complementos: ["300g de Maminha", "Farofa", "vinagrete"], preco: 60 },
+                "coracao": { complementos: ["Espetinho de coração", "Arroz", "Farofa de banana", "Feijão"], preco: 50 },
+                "alcatra": { complementos: ["300g de Alcatra", "Arroz", "Farofa de banana", "Feijão"], preco: 60 },
+                "coxinha de frango": { complementos: ["300g de frango", "Arroz", "queijo coalho", "Feijão"], preco: 25 },
+                "vegetais no espeto": { complementos: ["100g de vegetais", "Arroz", "Farofa de banana"], preco: 35 },
+                "cobumelos temperados": { complementos: ["100g de cobumelos", "Arroz", "Farofa de banana"], preco: 30 },
+                "pao de alho": { complementos: ["200g de Pão", "Refrigerante", "Molhos"], preco: 25 },
+                "milho no espeto": { complementos: ["200g de Milho", "Refrigerante", "Molhos"], preco: 15 },
+                "hamburguer vegetariano": { complementos: ["200g de Grão de bico", "Refrigerante", "Molhos"], preco: 40 },
+                "escondidinho de soja": { complementos: ["Arroz branco", "Pure de batata", "Queijo derretido"], preco: 40 }
+            };
+            let totalValue = 0.00;
+
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 0) {
+                header.classList.add('solid');
+            } else {
+                header.classList.remove('solid');
+            }
+        });
+
+        window.verificarPedido = function () {
+            const pedidoLower = pedido.value.toLowerCase().trim();
+            const cardapioItem = Object.keys(cardapio).find(item => item.toLowerCase() === pedidoLower);
+            if (cardapioItem) {
+                mensagemErro.textContent = '';
+                complementosSelect.innerHTML = '';
+                cardapio[cardapioItem].complementos.forEach(complemento => {
+                    const option = document.createElement('option');
+                    option.value = complemento;
+                    option.textContent = complemento;
+                    complementosSelect.appendChild(option);
+                });
+                complementosSelect.disabled = false;
+                totalValue = cardapio[cardapioItem].preco;
+            } else {
+                mensagemErro.textContent = 'Essa comida não está no menu';
+                complementosSelect.innerHTML = '';
+                complementosSelect.disabled = true;
+                totalValue = 0.00;
+            }
+            totalValueElement.textContent = `R$ ${totalValue.toFixed(2)}`;
+        }
+
+        window.confirmarPedido = function () {
+            alert("Pedido confirmado!");
+        }
+    });
+</script>

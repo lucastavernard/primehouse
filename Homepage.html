@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Churrascaria PRIME-HOUSE</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            padding: 2rem 0;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+            background-color: transparent;
+        }
+
+        header.solid {
+            background-color: rgba(29, 1, 1, 0.8);
+        }
+
+        .hero {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 12rem);
+            text-align: center;
+            color: #f8f8f2;
+            position: relative;
+            background-image: url('images/cr-115920.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            width: auto;
+        }
+
+        .hero .highlight-circle {
+            background: #552222cb;
+            width: 480px;
+            height: 480px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .about-us {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .about-us p {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .btn-about-us {
+            background-color: #9b2d0b98;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        .btn-about-us:hover {
+            background-color: #cf8c77;
+        }
+
+        .popular-menu {
+            padding: 2rem;
+            text-align: center;
+            background-color: rgba(252, 240, 240, 0.836);
+            margin-top: 2rem;
+            color: #522b2b;
+        }
+
+        .h2 {
+            font-size: 40px;
+            color: #0c0707;
+        }
+
+        .menu-item p {
+            color: #0e0101;
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+
+        .history {
+            padding: 4rem 2rem;
+            text-align: center;
+            background-color: #f2f2f2;
+            margin-top: 2rem;
+            color: #110101;
+        }
+
+        .history h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .history p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .contact-info {
+            padding: 4rem;
+            text-align: center;
+            background-color: rgba(252, 240, 240, 0.836);
+            margin-top: 2rem;
+            color: #0c0707;
+        }
+
+        .contact-info h2 {
+            font-size: 2rem;
+            color: #570505;
+            margin-bottom: 1rem;
+        }
+
+        .contact-details p {
+            font-size: 1.3rem;
+            color: #570505;
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="solid">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <a class="navbar-brand" href="Homepage.html">Churrascaria PRIME-HOUSE</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Cardapio.html">Cardápio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Reserva.html">Reserva</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Delivery.html">Delivery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Cadastro.html">Cadastro</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact-info">Contatos</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="highlight-circle">
+                <h1>Churrascaria <br>PRIME-HOUSE</h1>
+                <div class="about-us">
+                    <p>Conheça a nossa história!</p>
+                    <button class="btn-about-us" onclick="scrollToHistory()">Sobre Nós</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="popular-menu">
+            <h2 class="h2">Nosso Menu Popular</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="d-flex justify-content-between">
+                                <span>PICANHA</span>
+                                <span>R$ 49,90</span>
+                            </div>
+                            <p>300 gr carne | Arroz | farofa de ovo.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="d-flex justify-content-between">
+                                <span>FILE MIGNON</span>
+                                <span>R$ 65,90</span>
+                            </div>
+                            <p> 300 gr carne | Arroz | farofa de bacon.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="d-flex justify-content-between">
+                                <span>CORAÇÃO</span>
+                                <span>R$ 39,90</span>
+                            </div>
+                            <p>200 gr coração de frango| Arroz | farofa de banana.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="d-flex justify-content-between">
+                                <span>ALCATRA</span>
+                                <span>R$ 44,90</span>
+                            </div>
+                            <p>300 gr carne | Arroz | farofa de ovo.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="d-flex justify-content-between">
+                                <span>MAMINHA</span>
+                                <span>R$ 40,90</span>
+                            </div>
+                            <p>300 gr carne | Arroz | farofa de bacon.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="d-flex justify-content-between">
+                                <span>COXINHA DE FRANGO</span>
+                                <span>R$ 27,90</span>
+                            </div>
+                            <p>300 gr frango | Arroz | salada.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="history" id="historySection">
+            <h2>Conheça Nossa História</h2>
+            <p>
+                A Churrascaria PRIME-HOUSE foi fundada em 1990 e desde então se destaca pela qualidade e sabor de seus pratos.
+                Nossa missão é proporcionar uma experiência gastronômica única, com carnes selecionadas e um atendimento acolhedor.
+                Venha nos visitar e descubra o segredo do nosso sucesso.
+            </p>
+        </section>
+
+        <section id="contact-info" class="contact-info">
+            <h2>Contatos</h2>
+            <div class="contact-details">
+                <p>Telefone: (91) 99815-4336</p>
+                <p>Email: contato@primehouse.com</p>
+                <p>Endereço: Residencial Lion Ville, Barbas House - Ananindeua, PA</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function scrollToHistory() {
+            const historySection = document.getElementById('historySection');
+            if (historySection) {
+                historySection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('solid');
+            } else {
+                header.classList.remove('solid');
+            }
+        });
+    </script>
+</body>
+</html>
