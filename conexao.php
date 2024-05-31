@@ -1,6 +1,6 @@
 <?php
 // Configurações do banco de dados
-$servername = "localhost"; // Endereço do servidor do banco de dados
+$servername = "lucas"; // Endereço do servidor do banco de dados
 $username = "root"; // Nome de usuário do banco de dados
 $password = "pitoco"; // Senha do banco de dados
 $dbname = "primehouse"; // Nome do banco de dados
